@@ -1,0 +1,43 @@
+{% extends 'base.html' %} {% block content %}
+<table class="table-primary pt-5">
+  <tr class="table-primary">
+    <h1 class="fw-bold bg-warning">Code Model Detail</h1>
+  </tr>
+  <tr class="table-primary">
+    <p>ID: {{ code_detail.id }}</p>
+  </tr>
+  <tr class="table-primary">
+    <p><h2>Title: </h2>{{ code_detail.title }}</p>
+  </tr>
+  <tr class="table-primary">
+    <p style="background-color: #ee82ee">
+      <h2>Language: </h2>{{ code_detail.language }}
+    </p>
+  </tr>
+  <tr class="table-primary">
+    <p><h2>Codes: </h2>{{ code_detail.codes }}</p>
+  </tr>
+  <tr class="table-primary">
+    <p style="background-color: #3acd99">
+      <h2>Description: </h2>{{ code_detail.description }}
+    </p>
+  </tr>
+  <tr class="table-primary">
+    <p><h2>Type: </h2>{{ code_detail.types }}</p>
+  </tr>
+  {% if code_detail.image %}
+  <tr class="table-primary">
+    <p>
+      <img
+        src="{{ code_detail.image.url }}"
+        alt="{{ code_detail.title }}"
+        width="300"
+      />
+    </p>
+  </tr>
+  {% endif %}
+  <tr class="table-primary">
+    <a class="btn bg-success" href="{% url 'details' %}">Back to list</a>
+  </tr>
+</table>
+{% endblock content %}

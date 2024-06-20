@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+  <h1>search</h1>
+  {% if searched %}
+  <h2>Code you searched....{{searched}}</h2>
+
+  <ol class="list-group list-group-numbered">
+    {% for post in posts %}
+    <li class="list-group-item">
+      <a class="text-bg-warning link-dark p-2" href="{% url 'about' post.id %}"
+        >{{ post.title }}</a
+      >
+      <a
+        class="text-bg-info link-light p-2"
+        href="{% url 'update_data' post.id %}"
+        >Update</a
+      >
+      <a class="text-bg-danger p-2" href="{% url 'delete_data' post.id %}"
+        >Delete</a
+      >
+    </li>
+    {% empty %}
+    <li>No code models available.</li>
+    {% endfor %}
+  </ol>
+  {% endif %}
+</div>
+{% endblock content %}
