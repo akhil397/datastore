@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import CodeModels
+from .models import CodeModels, Language, Types
 from .forms import CodeForm
 
 
@@ -12,25 +12,21 @@ def about(request, pk):
     return render(request, 'about.html', {'code_detail': code_detail})
 
 def adddata(request):
+    all_lang = Language.objects.all()
+    types_code = Types.objects.all()
     context = {
-        'codeform': CodeForm()
+        'all_langs': all_lang,
+        'type_codes': types_code,
+        'codeform': CodeForm(),
     }
+    
     if request.method == 'POST':
-        codeformsave = CodeForm(request.POST)
+        codeformsave = CodeForm(request.POST, request.FILES)
         if codeformsave.is_valid():
             codeformsave.save()
-    return render(request, 'add_data.html',context)
+            return redirect('details')  # Redirect to the 'details' view after saving
 
-# def update_data(request, pk):
-#     code = get_object_or_404(CodeModels, id=pk)
-#     context = {
-#         'codeform': CodeForm(instance=code)
-#     }
-#     if request.method == 'POST':
-#         codeform = CodeForm(request.POST, instance=code)
-#         codeform.save()
-#         return redirect('details')
-#     return render(request, 'update.html', context)
+    return render(request, 'add_data.html', context)
 def update_code_model(request, pk):
     code_model = get_object_or_404(CodeModels, id=pk)
     

@@ -4,12 +4,12 @@ from .models import CodeModels
 class CodeForm(forms.ModelForm):
     class Meta:
         model = CodeModels
-        fields = ['title', 'language', 'codes', 'description', 'types', 'image']
+        fields = ['title', 'code_lang', 'codes', 'description', 'type_code', 'image']
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter title'}),
-            'language': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter programming language'}),
+            'code_lang': forms.Select(attrs={'class': 'form-control'}),  # Assuming this is a foreign key dropdown
             'codes': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter code'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter description'}),
-            'types': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enter type'}),
+            'type_code': forms.Select(attrs={'class': 'form-control'}),  # Assuming this is a foreign key dropdown
             'image': forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
         }

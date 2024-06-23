@@ -1,47 +1,77 @@
 {% extends 'base.html' %} {% block content %}
-
-<form action="">
+<form method="POST" enctype="multipart/form-data" action="">
+  {% csrf_token %}
   <div class="mb-3 mt-3">
-    <label for="text" class="form-label">Title of code:</label>
+    <label for="title" class="form-label">Title of code:</label>
     <input
       type="text"
       class="form-control"
-      id="email"
+      id="title"
       placeholder="Title of code"
-      name="text"
+      name="title"
+      required
     />
   </div>
+
   <div class="mb-3">
-    <label for="pwd" class="form-label">Language:</label>
+    <label for="code_lang" class="form-label">Languages</label>
     <input
-      type="text"
       class="form-control"
-      id="text"
-      placeholder="Language"
-      name="text"
+      list="languagesOptions"
+      id="code_lang"
+      placeholder="Type to search..."
+      name="code_lang"
+      required
     />
+    <datalist id="languagesOptions">
+      {% for lang in all_langs %}
+      <option value="{{ lang.lang_name }}"></option>
+      {% endfor %}
+    </datalist>
   </div>
+
   <div class="mb-3">
-    <label for="text" class="form-label">Type of code:</label>
+    <label for="type_code" class="form-label">Code Types</label>
     <input
-      type="text"
       class="form-control"
-      id="text"
-      placeholder="Code type"
-      name="text"
+      list="typesOptions"
+      id="type_code"
+      placeholder="Type to search..."
+      name="type_code"
+      required
     />
+    <datalist id="typesOptions">
+      {% for type_c in type_codes %}
+      <option value="{{ type_c.Type_of_code}}"></option>
+      {% endfor %}
+    </datalist>
   </div>
+
   <div class="mb-3">
-    <label for="text" class="form-label">Discription:</label>
-    <textarea class="form-control" rows="3" id="comment" name="text"></textarea>
+    <label for="description" class="form-label">Description:</label>
+    <textarea
+      class="form-control"
+      rows="3"
+      id="description"
+      name="description"
+      required
+    ></textarea>
   </div>
+
   <div class="mb-3">
-    <label for="pwd" class="form-label">Code:</label>
-    <textarea class="form-control" rows="3" id="comment" name="text"></textarea>
+    <label for="codes" class="form-label">Code:</label>
+    <textarea
+      class="form-control"
+      rows="3"
+      id="codes"
+      name="codes"
+      required
+    ></textarea>
   </div>
+
   <div class="mb-3">
-    <label for="formFile" class="form-label">Default file input example</label>
-    <input class="form-control" type="file" id="formFile" />
+    <label for="formFile" class="form-label">Upload Image (Optional)</label>
+    <input class="form-control" type="file" id="formFile" name="image" />
   </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
