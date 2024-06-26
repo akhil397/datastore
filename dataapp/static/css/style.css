@@ -1,14 +1,141 @@
-#formbox {
-  background-color: lightblue;
-}
-#formbox label {
-  color: brown;
-}
-/* body {
-  background-color: lightblue;
+form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
 }
 
-h1 {
-  color: navy;
-  margin-left: 20px;
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form textarea,
+form select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form input[type="file"]:focus,
+form textarea:focus,
+form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+.container {
+  width: 50%;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.messages {
+  margin-bottom: 20px;
+}
+
+.alert {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-error {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.code-models-list {
+  list-style: none;
+  padding: 0;
+}
+
+.code-models-list li {
+  padding: 15px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.code-models-list li h3 {
+  margin: 0;
+}
+
+.code-models-list li p {
+  margin: 5px 0;
+}
+
+.code-models-list li a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.code-models-list li a:hover {
+  text-decoration: underline;
+}
+
+pre {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }

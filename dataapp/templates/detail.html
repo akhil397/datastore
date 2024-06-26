@@ -5,12 +5,12 @@
   {% for code in code_models %}
 
   <div
-    class="btn-group list-group-item ps-0"
+    class="btn-group bg-info list-group-item ps-0"
     role="group"
     aria-label="Basic mixed styles example"
   >
-    <button type="button" class="btn btn-warning col">
-      <a class="text-bg-warning link-dark p-2" href="{% url 'about' code.id %}"
+    <button type="button" class="btn col">
+      <a class="link-dark p-2" href="{% url 'about' code.id %}"
         >{{ code.title }}</a
       >
     </button>

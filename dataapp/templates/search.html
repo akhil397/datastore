@@ -1,29 +1,30 @@
 {% extends 'base.html' %} {% block content %}
 
 <div class="container">
-  <h1>search</h1>
-  {% if searched %}
-  <h2>Code you searched....{{searched}}</h2>
+  <h2>Search Results</h2>
 
-  <ol class="list-group list-group-numbered">
+  {% if messages %}
+  <div class="messages">
+    {% for message in messages %}
+    <div
+      class="alert {% if message.tags %} alert-{{ message.tags }} {% endif %}"
+    >
+      {{ message }}
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %} {% if searched %}
+  <h3>Results for "{{ searched }}":</h3>
+  <ul>
     {% for post in posts %}
-    <li class="list-group-item">
-      <a class="text-bg-warning link-dark p-2" href="{% url 'about' post.id %}"
-        >{{ post.title }}</a
-      >
-      <a
-        class="text-bg-info link-light p-2"
-        href="{% url 'update_data' post.id %}"
-        >Update</a
-      >
-      <a class="text-bg-danger p-2" href="{% url 'delete_data' post.id %}"
-        >Delete</a
-      >
+    <li>
+      {{ post.title }} - {{ post.code_lang.name }} - {{ post.codes }} - {{
+      post.type_code.name }}
     </li>
     {% empty %}
-    <li>No code models available.</li>
+    <li>No results found.</li>
     {% endfor %}
-  </ol>
+  </ul>
   {% endif %}
 </div>
 {% endblock content %}
