@@ -32,7 +32,7 @@
             <a
               class="nav-link active"
               aria-current="page"
-              href="{% url 'details' %}"
+              href="{% url 'search_btn' %}"
               >Home</a
             >
           </li>
@@ -47,22 +47,28 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Filter by langageS
+              Entered Langages
             </a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Languge name</a></li>
+              {% for code in posts %}
+              <li>{{ code.code_lang}}</li>
+              {% endfor %}
             </ul>
           </li>
         </ul>
-        <form method="post">
+        <form method="post" action="{% url 'search_btn' %}">
           {% csrf_token %}
-          <input
-            type="text"
-            name="searched"
-            placeholder="Search here..."
-            class="form-control"
-          />
-          <button type="submit" class="btn btn-primary">Search</button>
+          <div class="input-group">
+            <input
+              type="text"
+              name="searched"
+              placeholder="Search here..."
+              class="form-control"
+            />
+            <button class="btn btn-outline-secondary" type="submit">
+              Search
+            </button>
+          </div>
         </form>
       </div>
     </div>

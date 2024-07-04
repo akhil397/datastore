@@ -1,32 +1,19 @@
 {% extends 'base.html' %} {% block content %}
-<table class="table-primary pt-5">
-  <tr class="table-primary">
-    <h1 class="fw-bold bg-warning">Code Model Detail</h1>
-  </tr>
-  <tr class="table-primary">
-    <p>ID: {{ code_detail.id }}</p>
-  </tr>
-  <tr class="table-primary">
-    <p><h2>Title: </h2>{{ code_detail.title }}</p>
-  </tr>
-  <tr class="table-primary">
-    <p style="background-color: #ee82ee">
-      <h2>Language: </h2>{{ code_detail.code_lang }}
-    </p>
-  </tr>
-  <tr class="table-primary">
-    <p><h2>Codes: </h2>{{ code_detail.codes }}</p>
-  </tr>
-  <tr class="table-primary">
-    <p style="background-color: #3acd99">
-      <h2>Description: </h2>{{ code_detail.description }}
-    </p>
-  </tr>
-  <tr class="table-primary">
-    <p><h2>Type: </h2>{{ code_detail.types }}</p>
-  </tr>
+<div class="container">
+  <div class="row">**************</div>
+  <div class="row"><h1>{{ code_detail.title }}</h1></div>
+  <div class="row"><h2>Language : {{ code_detail.code_lang }}</h2></div>
+  <div class="row">
+    <h2>Code</h2>
+    <pre><code>{{ code_detail.codes }}</code></pre>
+  </div>
+  <div class="row">
+    <h2>Code Discription</h2>
+    <p>{{ code_detail.description }}</p>
+  </div>
+  <div class="row"><h2>{{ code_detail.types }}</h2></div>
   {% if code_detail.image %}
-  <tr class="table-primary">
+  <div class="row">
     <p>
       <img
         src="{{ code_detail.image.url }}"
@@ -34,10 +21,7 @@
         width="300"
       />
     </p>
-  </tr>
+  </div>
   {% endif %}
-  <tr class="table-primary">
-    <a class="btn bg-success" href="{% url 'details' %}">Back to list</a>
-  </tr>
-</table>
+</div>
 {% endblock content %}

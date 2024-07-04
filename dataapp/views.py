@@ -4,9 +4,9 @@ from django.db.models import Q
 from .models import CodeModels, Language, Types
 from .forms import CodeForm
 
-def details(request):#this for listing
-    code_models = CodeModels.objects.all()
-    return render(request, 'detail.html', {'code_models': code_models})
+# def details(request, pk):#this for listing
+#     posts = get_object_or_404(CodeModels, id=pk)
+#     return render(request, 'search.html',{'posts': posts})
 
 def about(request, pk):#this for detailing
     code_detail = get_object_or_404(CodeModels, id=pk)
@@ -60,16 +60,16 @@ def delete_data(request, pk):
     code.delete()
     return redirect('details')
 
-
 def search_btn(request):
     if request.method == 'POST':
-        searched = request.POST['searched']
+        searched = request.POST.get('searched', '').strip()
         if searched:
             posts = CodeModels.objects.filter(
                 Q(title__icontains=searched) |
-                Q(code_lang__name__icontains=searched) |  # Assuming code_lang is a ForeignKey
+                Q(code_lang__lang_name__icontains=searched) |
                 Q(codes__icontains=searched) |
-                Q(type_code__name__icontains=searched)  # Assuming type_code is a ForeignKey
+                Q(description__icontains=searched) |
+                Q(type_code__Type_of_code__icontains=searched)
             )
             if posts.exists():
                 messages.success(request, f'Results for "{searched}" found.')
@@ -78,8 +78,7 @@ def search_btn(request):
             return render(request, 'search.html', {'searched': searched, 'posts': posts})
         else:
             messages.error(request, 'Please enter a search term.')
-            return render(request, 'search.html')
+            return render(request, 'search.html', {'searched': searched})
     else:
-        return render(request, 'search.html')
-
-        
+        posts = CodeModels.objects.all()
+        return render(request, 'search.html',{'posts': posts})
